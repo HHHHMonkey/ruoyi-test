@@ -17,9 +17,9 @@ test_register_user:
   - [ "wintest4", "123456", "13599999999", "1", "深圳市宝安区", False, 2002, "用户名已存在" ]
 
 test_login_user:
-  # 用户名,密码,验证码,请求唯一标识id,期望结果,期望返回码,期望返回信息
-  # username, password, except_result, except_code, except_msg
-  - [ "admin", "admin123", "true", "200", "操作成功" ]
+  # 用户名,密码,验证码,请求唯一标识id,期望返回码,期望返回信息
+  # username, password, except_code, except_msg
+  - [ "admin", "admin123", 200, "操作成功" ]
 
 test_update_user:
   # 修改的用户ID,新密码,新手机号,新性别,新联系地址,期望结果,期望返回码,期望返回信息
