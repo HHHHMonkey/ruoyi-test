@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # pytestDemo
 
 本项目实现接口自动化的技术选型：**Python+Requests+Pytest+YAML+Allure** ，主要是针对本人的一个接口项目来开展的，通过 Python+Requests 来发送和处理HTTP协议的请求接口，使用 Pytest 作为测试执行器，使用 YAML 来管理测试数据，使用 Allure 来生成测试报告。
@@ -60,6 +59,3 @@ allure serve ./report
 最终，可以看到测试报告的效果图如下：
 
 ![image.png](https://upload-images.jianshu.io/upload_images/16853007-248f805c82dbf99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-=======
-# ruoyi-test
->>>>>>> origin/main
