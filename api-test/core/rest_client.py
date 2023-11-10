@@ -1,9 +1,11 @@
-import requests
 import json as complexjson
+
+import requests
+
 from common.logger import logger
 
 
-class RestClient():
+class RestClient:
 
     def __init__(self, api_root_url):
         self.api_root_url = api_root_url
@@ -47,11 +49,15 @@ class RestClient():
                 data = complexjson.dumps(json)
             return self.session.patch(url, data, **kwargs)
 
-    def request_log(self, url, method, data=None, json=None, params=None, headers=None, files=None, cookies=None, **kwargs):
+    @staticmethod
+    def request_log(url, method, data=None, json=None, params=None, headers=None, files=None, cookies=None,
+                    **kwargs):
         logger.info("接口请求地址 ==>> {}".format(url))
         logger.info("接口请求方式 ==>> {}".format(method))
+
         # Python3中，json在做dumps操作时，会将中文转换成unicode编码，因此设置 ensure_ascii=False
         logger.info("接口请求头 ==>> {}".format(complexjson.dumps(headers, indent=4, ensure_ascii=False)))
+
         logger.info("接口请求 params 参数 ==>> {}".format(complexjson.dumps(params, indent=4, ensure_ascii=False)))
         logger.info("接口请求体 data 参数 ==>> {}".format(complexjson.dumps(data, indent=4, ensure_ascii=False)))
         logger.info("接口请求体 json 参数 ==>> {}".format(complexjson.dumps(json, indent=4, ensure_ascii=False)))

@@ -1,7 +1,9 @@
-import pymysql
 import os
-from common.read_data import data
+
+import pymysql
+
 from common.logger import logger
+from common.read_data import data
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")
@@ -16,7 +18,7 @@ DB_CONF = {
 }
 
 
-class MysqlDb():
+class MysqlDb:
 
     def __init__(self, db_conf=DB_CONF):
         # 通过字典拆包传递配置信息，建立数据库连接
