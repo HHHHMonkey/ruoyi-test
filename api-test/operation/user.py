@@ -88,7 +88,7 @@ def register(username, password, confirmPassword) -> ResultBase:
     return result
 
 
-def login(username, password) -> ResultBase:
+def login(username: str, password: str) -> ResultBase:
     """
     用户登陆
     :param username: 用户名
@@ -97,7 +97,7 @@ def login(username, password) -> ResultBase:
     """
     result = ResultBase()
 
-    # get verify code, uuid
+    # 1. get verify code, uuid
     verify_code, uuid = acquire_login_verify_code()
 
     payload = {
