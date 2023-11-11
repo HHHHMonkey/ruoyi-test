@@ -95,6 +95,21 @@ def delete_import_user():
 
 
 @pytest.fixture(scope="function")
+def delete_add_dept():
+    """增加部门前，先删除数据，用例执行之后，再次删除以清理数据"""
+    del_sql = base_data["init_sql"]["delete_add_dept"]
+    db.execute_db(del_sql)
+    step_first()
+    logger.info("注册用户操作：清理用户--准备添加新部门")
+    logger.info("执行前置SQL：{}".format(del_sql))
+    yield
+    db.execute_db(del_sql)
+    step_last()
+    logger.info("注册用户操作：删除添加的部门")
+    logger.info("执行后置SQL：{}".format(del_sql))
+
+
+@pytest.fixture(scope="function")
 def update_user_telephone():
     """修改用户前，因为手机号唯一，为了使用例重复执行，每次需要先修改手机号，再执行用例"""
     update_sql = base_data["init_sql"]["update_user_telephone"]

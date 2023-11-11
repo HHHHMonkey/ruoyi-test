@@ -7,4 +7,5 @@ init_sql:
     - "INSERT INTO user(username, password, role, sex, telephone, address) VALUES('测试test', '123456', '1', '1', '13488888888', '北京市海淀区')"
     - "DELETE FROM user WHERE username = '测试test'"
   delete_import_user: "DELETE FROM sys_user WHERE user_name = 'hjl'"
+  delete_add_dept: "DELETE FROM sys_dept WHERE dept_name = '安徽总公司'"
   update_user_telephone: "UPDATE user SET telephone = '13500010004' WHERE id = 4"

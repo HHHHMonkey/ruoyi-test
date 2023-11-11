@@ -18,6 +18,10 @@ test_login_user:
 test_change_job_status:
   - [ 1, "1", 200, "操作成功" ]
 
+test_add_dept:
+  # parentId, deptName, orderNum, leader, phone, email, status, expect_code, except_msg
+  - [ 100, "安徽总公司", 1, "hjl", "15856925800", "qq@qq.com", "0", 200, "操作成功" ]
+
 test_get_get_one_user_info:
   # 用户名,期望结果,期望返回码,期望返回信息
   # username, except_result, except_code, except_msg
