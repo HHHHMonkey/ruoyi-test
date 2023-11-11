@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from common.logger import logger
-from operation.login import login_user
+from operation.user import login
 from testcases.conftest import api_data
 
 
@@ -32,7 +32,7 @@ class TestUserLogin:
         :return:
         """
         logger.info("*************** START-TEST ***************")
-        result = login_user(username, password)
+        result = login(username, password)
         step_1(username)
         logger.info("code ==>> expect: [{}]， actual: [{}]".format(except_code, result.response.json().get("code")))
         assert result.response.json().get("code") == except_code
