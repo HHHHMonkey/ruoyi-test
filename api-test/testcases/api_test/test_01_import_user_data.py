@@ -34,7 +34,7 @@ class TestImportUserData:
         token = get_login_token
         step_1()
 
-        # TODO:处理文件路径
+        # TODO:处理文件路径(使用YAML配置文件进行重构)
         result = upload("/Users/hujiale/PycharmProjects/ruoyi-test/api-test/data/excel/import_user_data_success.xlsx",
                         token)
 
