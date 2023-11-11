@@ -28,7 +28,7 @@ class TestImportUserData:
     @pytest.mark.single
     @pytest.mark.parametrize("filename, except_code", api_data["test_import_user_data"])
     @pytest.mark.usefixtures("delete_import_user")
-    def test_get_all_user_info(self, get_login_token, filename, except_code):
+    def test_import_user_data(self, get_login_token, filename, except_code):
         logger.info("*************** START-TEST ***************")
 
         token = get_login_token
