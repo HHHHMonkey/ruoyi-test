@@ -7,6 +7,7 @@ from api.login import login_api
 from common.logger import logger
 from common.mysql_operate import db
 from common.read_data import data
+from operation.user import acquire_login_verify_code
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
@@ -43,19 +44,22 @@ def step_login(username, password):
 
 
 @pytest.fixture(scope="session")
-def login_fixture():
+def get_login_token():
     username = base_data["init_admin_user"]["username"]
     password = base_data["init_admin_user"]["password"]
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/json"
     }
+    verify_code, uuid = acquire_login_verify_code()
     payload = {
         "username": username,
-        "password": password
+        "password": password,
+        "code": verify_code,
+        "uuid": uuid
     }
-    loginInfo = login_api.login_api(data=payload, headers=header)
+    response = login_api.login(json=payload, headers=header)
     step_login(username, password)
-    yield loginInfo.json()
+    yield response.json()["token"]
 
 
 @pytest.fixture(scope="function")
@@ -76,9 +80,9 @@ def insert_delete_user():
 
 
 @pytest.fixture(scope="function")
-def delete_register_user():
+def delete_import_user():
     """注册用户前，先删除数据，用例执行之后，再次删除以清理数据"""
-    del_sql = base_data["init_sql"]["delete_register_user"]
+    del_sql = base_data["init_sql"]["delete_import_user"]
     db.execute_db(del_sql)
     step_first()
     logger.info("注册用户操作：清理用户--准备注册新用户")

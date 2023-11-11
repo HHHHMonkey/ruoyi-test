@@ -2,6 +2,7 @@ import http
 
 from api.login import login_api
 from api.register import register_api
+from api.upload import upload_api
 from common.logger import logger
 from common.redis_util import RedisClient
 from core.result_base import ResultBase
@@ -9,6 +10,42 @@ from core.result_base import ResultBase
 CAPTCHA_CODE_KEY = "captcha_codes:"
 
 REDIS_CLIENT = RedisClient()
+
+
+def upload(filename, token) -> ResultBase:
+    """
+    通过excel文件批量添加用户
+    :param token:
+    :param filename:
+    :return:
+    """
+    result = ResultBase()
+
+    # 注意不需要再使用"Content-Type": "multipart/form-data",
+    # 谷歌浏览器会自动帮你添加该属性
+    header = {
+        "Authorization": token,
+    }
+
+    files = {
+        "file": open(filename, 'rb')
+    }
+
+    res = upload_api.import_user_data(files=files, headers=header)
+
+    logger.info("upload response json is {}".format(res.json()))
+    result.success = False
+
+    if res.json()["code"] == 0:
+        result.success = True
+    else:
+        result.error = "接口返回码是 [{}], 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
+
+    result.msg = res.json()["msg"]
+    result.response = res
+    logger.info("批量导入用户数据 ==>> 返回结果 ==>> {}".format(result.response.text))
+
+    return result
 
 
 def register(username, password, confirmPassword) -> ResultBase:
@@ -73,6 +110,7 @@ def login(username, password) -> ResultBase:
     header = {
         "Content-Type": "application/json"
     }
+
     res = login_api.login(json=payload, headers=header)
     result.success = False
 

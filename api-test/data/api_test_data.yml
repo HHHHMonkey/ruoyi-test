@@ -1,7 +1,7 @@
-test_get_all_user_info:
+test_import_user_data:
   # 期望结果,期望返回码,期望返回信息
-  # except_result, except_code, except_msg
-  - [ True, 0, "查询成功" ]
+  # filename, except_code, except_msg
+  - [ "data/excel/import_user_data_success.xlsx", 200 ]
 
 test_get_get_one_user_info:
   # 用户名,期望结果,期望返回码,期望返回信息

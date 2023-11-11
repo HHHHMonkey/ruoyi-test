@@ -32,7 +32,7 @@ class RestClient:
         params = dict(**kwargs).get("params")
         files = dict(**kwargs).get("params")
         cookies = dict(**kwargs).get("params")
-        self.request_log(url, method, data, json, params, headers, files, cookies)
+        # self.request_log(url, method, data, json, params, headers, files, cookies)
         if method == "GET":
             return self.session.get(url, **kwargs)
         if method == "POST":

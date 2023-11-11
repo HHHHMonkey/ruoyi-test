@@ -4,29 +4,29 @@
 # from common.logger import logger
 #
 #
-# @allure.step("步骤1 ==>> 注册用户")
-# def step_1(username, password, telephone, sex, address):
-#     logger.info("步骤1 ==>> 注册用户 ==>> {}, {}, {}, {}, {}".format(username, password, telephone, sex, address))
-#
-#
-# @allure.step("步骤2 ==>> 登录用户")
-# def step_2(username):
-#     logger.info("步骤2 ==>> 登录管理员用户：{}".format(username))
-#
-#
-# @allure.step("步骤3 ==>> 查看新注册用户ID")
-# def step_3(id):
-#     logger.info("步骤3 ==>> 查看新注册用户ID：{}".format(id))
-#
-#
-# @allure.step("步骤4 ==>> 根据ID修改用户信息")
-# def step_4(id):
-#     logger.info("步骤4 ==>> 修改用户ID：{}".format(id))
+
 #
 #
 # @allure.severity(allure.severity_level.BLOCKER)
 # @allure.epic("针对业务场景的测试")
-# @allure.feature("场景：用户注册-用户登录-修改用户")
+# @allure.feature("场景：用户注册-用户登录-修改用户"# @allure.step("步骤1 ==>> 注册用户")
+# # def step_1(username, password, telephone, sex, address):
+# #     logger.info("步骤1 ==>> 注册用户 ==>> {}, {}, {}, {}, {}".format(username, password, telephone, sex, address))
+# #
+# #
+# # @allure.step("步骤2 ==>> 登录用户")
+# # def step_2(username):
+# #     logger.info("步骤2 ==>> 登录管理员用户：{}".format(username))
+# #
+# #
+# # @allure.step("步骤3 ==>> 查看新注册用户ID")
+# # def step_3(id):
+# #     logger.info("步骤3 ==>> 查看新注册用户ID：{}".format(id))
+# #
+# #
+# # @allure.step("步骤4 ==>> 根据ID修改用户信息")
+# # def step_4(id):
+# #     logger.info("步骤4 ==>> 修改用户ID：{}".format(id)))
 # class TestRegLogUpdate():
 #
 #     @allure.story("用例--注册/登录/修改--预期成功")
