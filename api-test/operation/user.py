@@ -46,23 +46,22 @@ def upload(filename, token) -> ResultBase:
     return result
 
 
-def register(username, password, confirmPassword) -> ResultBase:
+def register(username, password, confirm_password, verify_code, uuid) -> ResultBase:
     """
     用户注册
-    :param confirmPassword:
-    :param username:
-    :param password:
+    :param uuid: 唯一请求id
+    :param verify_code: 验证码
+    :param confirm_password: 确认的密码
+    :param username: 用户名
+    :param password: 密码
     :return:
     """
     result = ResultBase()
 
-    # get verify code, uuid
-    verify_code, uuid = acquire_login_verify_code()
-
     payload = {
         "username": username,
         "password": password,
-        "confirmPassword": confirmPassword,
+        "confirmPassword": confirm_password,
         "code": verify_code,
         "uuid": uuid
     }
