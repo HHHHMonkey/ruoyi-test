@@ -6,9 +6,9 @@ from operation.system import change_job_status
 from testcases.conftest import api_data
 
 
-@allure.step("步骤1 ==>> 登录用户")
+@allure.step("步骤1 ==>> 开启后台定时任务")
 def step_1(username):
-    logger.info("步骤1 ==>> 登录用户：{}".format(username))
+    logger.info("步骤1 ==>> 开启后台定时任务：{}".format(username))
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -16,19 +16,21 @@ def step_1(username):
 @allure.feature("定时任务模块")
 class TestCronJob:
 
-    @allure.story("用例--登录用户")
-    @allure.description("该用例是针对获取用户登录接口的测试")
-    @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    @allure.title("测试数据：【 {job_id}，{status}，{except_code}，{except_msg}】")
+    @allure.story("用例--开启定时任务")
+    @allure.description("该用例是针对开启定时任务接口的测试")
+    @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
+    @allure.title("测试数据：[{job_id}，{status}，{except_code}，{except_msg}]")
     @pytest.mark.single
     @pytest.mark.parametrize("job_id, status, except_code, except_msg", api_data["test_change_job_status"])
     def test_change_job_status(self, get_login_token, job_id, status, except_code, except_msg):
         """
-        :param job_id:
-        :param status:
-        :param except_code:
-        :param except_msg:
+        开启后台定时任务
+        :param get_login_token: 登陆token
+        :param job_id: 定时任务id
+        :param status: 定时任务状态0:开启/1:关闭
+        :param except_code: 期望返回code
+        :param except_msg: 期望返回msg
         :return:
         """
         logger.info("*************** START-TEST ***************")

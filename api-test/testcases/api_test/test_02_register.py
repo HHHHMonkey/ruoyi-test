@@ -19,22 +19,31 @@ class TestUserRegister:
 
     @allure.story("用例--注册用户信息")
     @allure.description("该用例是针对获取用户注册接口的测试")
-    @allure.issue("https://www.cnblogs.com/wintest", name="点击，跳转到对应BUG的链接地址")
-    @allure.testcase("https://www.cnblogs.com/wintest", name="点击，跳转到对应用例的链接地址")
-    @allure.title(
-        "测试数据：【 {username}, {password}, {confirmPassword}, {except_code}, {except_msg}】")
+    @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
+    @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
+    @allure.title("测试数据：[{username}, {password}, {confirmPassword}, {except_code}, {except_msg}]")
     @pytest.mark.single
     @pytest.mark.parametrize("username, password, confirmPassword, except_code, except_msg",
                              api_data["test_register_user"])
     @pytest.mark.usefixtures("delete_register_user")
     def test_register_user(self, username, password, confirmPassword, except_code, except_msg):
-        logger.info("*************** 开始执行用例 ***************")
+        """
+        用户注册
+        :param username: 用户名称
+        :param password: 密码
+        :param confirmPassword: 确认密码
+        :param except_code: 期望返回code
+        :param except_msg: 期望返回msg
+        :return:
+        """
+        logger.info("*************** START-TEST ***************")
         result = register(username, password, confirmPassword)
         step_1(username, password, confirmPassword)
         assert result.response.json().get("code") == except_code
         assert result.response.json().get("msg") == except_msg
         logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(except_code, result.response.json().get("code")))
-        logger.info("*************** 结束执行用例 ***************")
+
+        logger.info("*************** END-TEST ***************")
 
 
 if __name__ == '__main__':
