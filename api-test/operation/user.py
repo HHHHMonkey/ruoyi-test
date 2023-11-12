@@ -86,17 +86,16 @@ def register(username, password, confirmPassword) -> ResultBase:
     return result
 
 
-def login(username: str, password: str) -> ResultBase:
+def login(username: str, password: str, verify_code: str, uuid: str) -> ResultBase:
     """
     用户登陆
     :param username: 用户名
     :param password: 密码
+    :param verify_code: 验证码
+    :param uuid: 唯一id
     :return: ResultBase
     """
     result = ResultBase()
-
-    # 1. get verify code, uuid
-    verify_code, uuid = acquire_login_verify_code()
 
     payload = {
         "username": username,
@@ -153,3 +152,12 @@ def acquire_login_verify_code() -> (str, str):
 
     # redis.get()存在b前置, 代表着bytes,需要转化为str
     return verify_code.replace("\\", "").replace("\"", ""), uuid
+
+
+def expire_login_verify_code(uuid: str):
+    """
+    :param uuid 唯一请求id
+    让验证码失效
+    :return:
+    """
+    REDIS_CLIENT.delete(key=CAPTCHA_CODE_KEY + uuid)

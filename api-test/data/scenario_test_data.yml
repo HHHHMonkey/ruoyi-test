@@ -1,0 +1,31 @@
+test_login_user_success:
+  username: "admin"
+  password: "admin123"
+  except_code: 200
+  except_msg: "操作成功"
+
+test_login_user_verify_code_error:
+  username: "admin"
+  password: "admin123"
+  except_code: 500
+  except_msg: "验证码错误"
+
+
+test_login_user_verify_code_expired:
+  username: "admin"
+  password: "admin123"
+  except_code: 500
+  except_msg: "验证码已失效"
+
+test_login_user_username_error:
+  username: "admin1"
+  password: "admin123"
+  except_code: 500
+  except_msg: "用户不存在/密码错误"
+
+
+test_login_user_password_error:
+  username: "admin"
+  password: "admin1234"
+  except_code: 500
+  except_msg: "用户不存在/密码错误"

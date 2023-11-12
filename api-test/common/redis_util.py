@@ -30,3 +30,9 @@ class RedisClient:
             return self.__redis.get(key)
         else:
             return None
+
+    def delete(self, key):
+        if self.__redis.exists(key):
+            return self.__redis.delete(key)
+        else:
+            return None
