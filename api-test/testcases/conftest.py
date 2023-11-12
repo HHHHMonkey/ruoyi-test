@@ -63,23 +63,6 @@ def get_login_token():
 
 
 @pytest.fixture(scope="function")
-def insert_delete_user():
-    """删除用户前，先在数据库插入一条用户数据"""
-    insert_sql = base_data["init_sql"]["insert_delete_user"][0]
-    db.execute_db(insert_sql)
-    step_first()
-    logger.info("删除用户操作：插入新用户--准备用于删除用户")
-    logger.info("执行前置SQL：{}".format(insert_sql))
-    yield
-    # 因为有些情况是不给删除管理员用户的，这种情况需要手动清理上面插入的数据
-    del_sql = base_data["init_sql"]["insert_delete_user"][1]
-    db.execute_db(del_sql)
-    step_last()
-    logger.info("删除用户操作：手工清理处理失败的数据")
-    logger.info("执行后置SQL：{}".format(del_sql))
-
-
-@pytest.fixture(scope="function")
 def delete_import_user():
     """注册用户前，先删除数据，用例执行之后，再次删除以清理数据"""
     del_sql = base_data["init_sql"]["delete_import_user"]
@@ -107,13 +90,3 @@ def delete_add_dept():
     step_last()
     logger.info("注册用户操作：删除添加的部门")
     logger.info("执行后置SQL：{}".format(del_sql))
-
-
-@pytest.fixture(scope="function")
-def update_user_telephone():
-    """修改用户前，因为手机号唯一，为了使用例重复执行，每次需要先修改手机号，再执行用例"""
-    update_sql = base_data["init_sql"]["update_user_telephone"]
-    db.execute_db(update_sql)
-    step_first()
-    logger.info("修改用户操作：手工修改用户的手机号，以便用例重复执行")
-    logger.info("执行SQL：{}".format(update_sql))

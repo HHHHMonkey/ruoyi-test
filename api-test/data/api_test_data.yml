@@ -1,42 +1,19 @@
 test_import_user_data:
-  # 期望结果,期望返回码,期望返回信息
-  # filename, except_code, except_msg
+  # 文件绝对路径,期望code,期望msg
   - [ "data/excel/import_user_data_success.xlsx", 200 ]
 
 test_register_user:
-  # 用户名,密码,确认密码,期望结果,期望返回码,期望返回信息
-  # username, password, confirmPassword, except_result, except_code, except_msg
+  # 用户名,密码,确认密码,期望code,期望msg
   - [ "hujiale", "123456", "123456", 200, "操作成功" ]
-#  - [ "测试test", "123456", "13599999999", "3", "深圳市宝安区", False, 2003, "输入的性别只能是 0(男) 或 1(女)" ]
-#  - [ "wintest4", "123456", "13599999999", "1", "深圳市宝安区", False, 2002, "用户名已存在" ]
 
 test_login_user:
   # 用户名,密码,验证码,请求唯一标识id,期望返回码,期望返回信息
-  # username, password, except_code, except_msg
   - [ "admin", "admin123", 200, "操作成功" ]
 
 test_change_job_status:
+  # 定时任务Id, 定时任务状态0:开启,1:关闭,期望code,期望msg
   - [ 1, "1", 200, "操作成功" ]
 
 test_add_dept:
-  # parentId, deptName, orderNum, leader, phone, email, status, expect_code, except_msg
+  # 父id,部门名称,排序数字,领导人名称,手机号码,邮箱,部门状态(0:开启/1:关闭),期望code,期望msg
   - [ 100, "安徽总公司", 1, "hjl", "15856925800", "qq@qq.com", "0", 200, "操作成功" ]
-
-test_get_get_one_user_info:
-  # 用户名,期望结果,期望返回码,期望返回信息
-  # username, except_result, except_code, except_msg
-  - [ "wintest4", True, 0, "查询成功" ]
-  - [ "wintest1111", False, "1004", "查不到相关用户" ]
-
-test_update_user:
-  # 修改的用户ID,新密码,新手机号,新性别,新联系地址,期望结果,期望返回码,期望返回信息
-  # id, new_password, new_telephone, new_sex, new_address, except_result, except_code, except_msg
-  - [ 4, "123456", "13500010014", "1", "深圳市宝安区", True, 0, "修改用户信息成功" ]
-  - [ 4, "123456", "1350001001", "1", "深圳市宝安区", False, 4008, "手机号格式不正确" ]
-  - [ 111, "123456", "13500010014", "1", "深圳市宝安区", False, 4005, "用户ID不存在" ]
-
-test_delete_user:
-  # 删除的用户名,期望结果,期望返回码,期望返回信息
-  # username, except_result, except_code, except_msg
-  - [ "测试test", True, 0, "删除用户信息成功" ]
-  - [ "wintest3", False, 3006, "该用户不允许删除" ]
