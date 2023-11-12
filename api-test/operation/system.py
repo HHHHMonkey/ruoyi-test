@@ -1,4 +1,3 @@
-from api.monitor import monitor_api
 from api.system import system_api
 from common.logger import logger
 from core.result_base import ResultBase
@@ -25,7 +24,7 @@ def change_job_status(job_id: int, status: int, token: str) -> ResultBase:
         "status": status
     }
 
-    res = monitor_api.change_job_status(json=payload, headers=header)
+    res = system_api.change_job_status(json=payload, headers=header)
     result.success = True
 
     if res.json()["code"] == 0:

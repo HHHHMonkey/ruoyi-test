@@ -2,7 +2,7 @@ import allure
 import pytest
 
 from common.logger import logger
-from operation.monitor import change_job_status
+from operation.system import change_job_status
 from testcases.conftest import api_data
 
 

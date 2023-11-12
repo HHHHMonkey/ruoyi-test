@@ -1,8 +1,6 @@
 import http
 
-from api.login import login_api
-from api.register import register_api
-from api.upload import upload_api
+from api.user import user_api
 from common.logger import logger
 from common.redis_util import RedisClient
 from core.result_base import ResultBase
@@ -31,7 +29,7 @@ def upload(filename, token) -> ResultBase:
         "file": open(filename, 'rb')
     }
 
-    res = upload_api.import_user_data(files=files, headers=header)
+    res = user_api.import_user_data(files=files, headers=header)
 
     logger.info("upload response json is {}".format(res.json()))
     result.success = False
@@ -73,7 +71,7 @@ def register(username, password, confirmPassword) -> ResultBase:
         "Content-Type": "application/json"
     }
 
-    res = register_api.register(json=payload, headers=header)
+    res = user_api.register(json=payload, headers=header)
     result.success = False
 
     if res.json()["code"] == 0:
@@ -111,7 +109,7 @@ def login(username: str, password: str) -> ResultBase:
         "Content-Type": "application/json"
     }
 
-    res = login_api.login(json=payload, headers=header)
+    res = user_api.login(json=payload, headers=header)
     result.success = False
 
     if res.json()["code"] == 0:
@@ -139,7 +137,7 @@ def acquire_login_verify_code() -> (str, str):
     }
 
     # captchaImage
-    response = login_api.captchaImage(headers=header)
+    response = user_api.captchaImage(headers=header)
 
     verify_code = None
     uuid = None

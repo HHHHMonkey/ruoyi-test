@@ -3,7 +3,7 @@ import os
 import allure
 import pytest
 
-from api.login import login_api
+from api.user import user_api
 from common.logger import logger
 from common.mysql_operate import db
 from common.read_data import data
@@ -57,7 +57,7 @@ def get_login_token():
         "code": verify_code,
         "uuid": uuid
     }
-    response = login_api.login(json=payload, headers=header)
+    response = user_api.login(json=payload, headers=header)
     step_login(username, password)
     yield response.json()["token"]
 

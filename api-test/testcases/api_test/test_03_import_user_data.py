@@ -45,4 +45,4 @@ class TestImportUserData:
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "-s", "test_01_import_user_data.py"])
+    pytest.main(["-q", "-s", "test_03_import_user_data.py"])
