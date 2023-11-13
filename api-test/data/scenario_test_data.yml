@@ -75,3 +75,25 @@ test_register_user_verify_code_expired:
   password: "hzy123456"
   except_code: 500
   except_msg: "验证码已失效"
+
+# 用户数据导入-成功
+test_import_user_data_success:
+  username: "admin"
+  password: "admin123"
+  file: "success.xlsx"
+  except_code: 200
+
+# 用户数据导入失败-重复导入
+test_import_user_data_replicate_import:
+  username: "admin"
+  password: "admin123"
+  file: "replicate_import.xlsx"
+  except_code: 500
+
+# 用户数据导入失败-导入用户数据不能为空！
+test_import_user_data_empty:
+  username: "admin"
+  password: "admin123"
+  file: "empty.xlsx"
+  except_code: 500
+  except_msg: "导入用户数据不能为空！"

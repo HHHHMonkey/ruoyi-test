@@ -3,6 +3,7 @@ init_admin_user:
   username: "admin"
   password: "admin123"
 
+# pytest fixtures sql
 init_sql:
   delete_register_user: "DELETE FROM sys_user WHERE user_name = 'hzy'"
   delete_import_user: "DELETE FROM sys_user WHERE user_name = 'hzy'"

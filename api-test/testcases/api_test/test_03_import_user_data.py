@@ -7,7 +7,9 @@ from common.logger import logger
 from operation.user import upload
 from testcases.conftest import api_data
 
+# 导入文件的路径
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+IMPORT_DATA_PATH = os.path.join(BASE_PATH, "excel")
 
 
 @allure.step("步骤1 ==>> 批量导入用户数据")
@@ -41,9 +43,7 @@ class TestImportUserData:
         token = get_login_token
         step_1()
 
-        # TODO:处理文件路径(使用YAML配置文件进行重构)
-        result = upload("/Users/hujiale/PycharmProjects/ruoyi-test/api-test/data/excel/import_user_data_success.xlsx",
-                        token)
+        result = upload(filename=os.path.join(IMPORT_DATA_PATH, filename), token=token)
 
         assert result.response.json().get("code") == except_code
         logger.info("code ==>> expect: [{}]， actual: [{}]".format(except_code, result.response.json().get("code")))

@@ -12,9 +12,9 @@ REDIS_CLIENT = RedisClient()
 
 def upload(filename, token) -> ResultBase:
     """
-    通过excel文件批量添加用户
-    :param token:
-    :param filename:
+    通过excel文件批量添加用户(前端控制了一次只能上传一个文件)
+    :param token: 登陆token
+    :param filename: 上传的文件路径
     :return:
     """
     result = ResultBase()
@@ -129,12 +129,12 @@ def acquire_login_verify_code() -> (str, str):
     :return: verify code
     """
 
-    # prepare request parameter
+    # 准备请求头
     header = {
         "Content-Type": "application/json"
     }
 
-    # captchaImage
+    # 获取验证码
     response = user_api.captchaImage(headers=header)
 
     verify_code = None

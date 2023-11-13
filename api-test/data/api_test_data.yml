@@ -1,6 +1,6 @@
 test_import_user_data:
   # 文件绝对路径,期望code,期望msg
-  - [ "data/excel/import_user_data_success.xlsx", 200 ]
+  - [ "success.xlsx", 200 ]
 
 test_register_user:
   # 用户名,密码,确认密码,期望code,期望msg
