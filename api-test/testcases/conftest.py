@@ -7,6 +7,7 @@ from api.user import user_api
 from common.logger import logger
 from common.mysql_operate import db
 from common.read_data import data
+from operation.system import open_sys_register
 from operation.user import acquire_login_verify_code
 
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -105,3 +106,13 @@ def delete_add_dept():
     step_last()
     logger.info("注册用户操作：删除添加的部门")
     logger.info("执行后置SQL：{}".format(del_sql))
+
+
+@pytest.fixture(scope="function")
+def restart_register_function():
+    """
+    关闭注册功能之后,需要重新打开
+    """
+    yield
+    open_sys_register()
+    logger.info("注册用户操作：打开系统注册用户功能")

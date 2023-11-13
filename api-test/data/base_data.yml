@@ -4,6 +4,6 @@ init_admin_user:
   password: "admin123"
 
 init_sql:
-  delete_register_user: "DELETE FROM sys_user WHERE user_name = 'hjl'"
-  delete_import_user: "DELETE FROM sys_user WHERE user_name = 'hjl'"
-  delete_add_dept: "DELETE FROM sys_dept WHERE dept_name = '安徽总公司'"
+  delete_register_user: "DELETE FROM sys_user WHERE user_name = 'hzy'"
+  delete_import_user: "DELETE FROM sys_user WHERE user_name = 'hzy'"
+  delete_add_dept: "DELETE FROM sys_dept WHERE dept_name = '珠海总公司'"

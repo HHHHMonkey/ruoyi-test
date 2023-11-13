@@ -35,14 +35,43 @@ test_login_user_password_error:
 
 # 注册成功
 test_register_user_success:
-  username: "hjl"
-  password: "hjl991011"
+  username: "hzy"
+  password: "hzy123456"
   except_code: 200
   except_msg: "操作成功"
 
 # 注册失败-密码长度必须在5到20个字符之间
 test_register_user_password_invalid:
-  username: "hjl"
-  password: "hjl"
-  except_code: 200
-  except_msg: "操作成功"
+  username: "hzy"
+  password: "hzy"
+  except_code: 500
+  except_msg: "密码长度必须在5到20个字符之间"
+
+# 注册失败-密码和确认密码不相同
+test_register_user_confirm_password_not_same:
+  username: "hzy"
+  password: "hzy123456"
+  confirm_password: "hzy1234567"
+  except_code: 500
+  except_msg: "确认密码失败"
+
+# 注册失败-当前系统没有开启注册功能!
+test_register_user_sys_not_support_register:
+  username: "hzy"
+  password: "hzy123456"
+  except_code: 500
+  except_msg: "当前系统没有开启注册功能！"
+
+# 注册失败-验证码错误
+test_register_user_verify_code_error:
+  username: "hzy"
+  password: "hzy123456"
+  except_code: 500
+  except_msg: "验证码错误"
+
+# 注册失败-验证码失效
+test_register_user_verify_code_expired:
+  username: "hzy"
+  password: "hzy123456"
+  except_code: 500
+  except_msg: "验证码已失效"

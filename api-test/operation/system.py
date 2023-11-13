@@ -1,14 +1,20 @@
 from api.system import system_api
 from common.logger import logger
+from common.redis_util import RedisClient
 from core.result_base import ResultBase
+
+# False/True: 关闭/开启
+REGISTER_STATUS_KEY = "sys_config:sys.account.registerUser"
+
+REDIS_CLIENT = RedisClient()
 
 
 def change_job_status(job_id: int, status: int, token: str) -> ResultBase:
     """
     根据id,status去修改定时任务的状态
-    :param job_id:
-    :param status:
-    :param token:
+    :param job_id: 任务ID
+    :param status: 状态0:开启/1:关闭
+    :param token: 登陆token
     :return:
     """
 
@@ -49,14 +55,14 @@ def add_dept(parentId: int,
              token: str) -> ResultBase:
     """
     添加部门
-    :param token:
-    :param parentId:
-    :param deptName:
-    :param orderNum:
-    :param leader:
-    :param phone:
-    :param email:
-    :param status:
+    :param token: 登陆token
+    :param parentId: 父部门Id
+    :param deptName: 部门名称
+    :param orderNum: 排序数字
+    :param leader: 领导人名称
+    :param phone: 电话
+    :param email: 邮箱
+    :param status: 部门
     :return:
     """
 
@@ -90,3 +96,19 @@ def add_dept(parentId: int,
     logger.info("添加部门 ==>> 返回结果 ==>> {}".format(result.response.text))
 
     return result
+
+
+def close_sys_register():
+    """
+    关闭系统注册的功能
+    :return:
+    """
+    REDIS_CLIENT.set(REGISTER_STATUS_KEY, "false")
+
+
+def open_sys_register():
+    """
+    打开系统注册的功能
+    :return:
+    """
+    REDIS_CLIENT.set(REGISTER_STATUS_KEY, "true")
