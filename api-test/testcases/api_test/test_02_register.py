@@ -15,7 +15,9 @@ def step_1(username, password, confirm_password):
 @allure.epic("针对单个接口的测试")
 @allure.feature("用户注册模块")
 class TestUserRegister:
-    """用户注册"""
+    """
+    用户注册
+    """
 
     @allure.story("用例--注册用户信息")
     @allure.description("该用例是针对获取用户注册接口的测试")
