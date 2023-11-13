@@ -83,7 +83,7 @@ class TestUserLogin:
 
         logger.info("*************** END-TEST ***************")
 
-    @allure.story("用例--获取验证码/用户登陆--预期失败")
+    @allure.story("用例--获取验证码/用户登陆--验证码失效")
     @allure.description("该用例是针对 获取验证码/用户登陆 场景的测试")
     @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
@@ -118,7 +118,7 @@ class TestUserLogin:
 
         logger.info("*************** END-TEST ***************")
 
-    @allure.story("用例--获取验证码/用户登陆--预期失败")
+    @allure.story("用例--获取验证码/用户登陆--验证码错误")
     @allure.description("该用例是针对 获取验证码/用户登陆 场景的测试")
     @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
@@ -153,7 +153,7 @@ class TestUserLogin:
 
         logger.info("*************** END-TEST ***************")
 
-    @allure.story("用例--获取验证码/用户登陆--预期失败")
+    @allure.story("用例--获取验证码/用户登陆--用户名错误")
     @allure.description("该用例是针对 获取验证码/用户登陆 场景的测试")
     @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
@@ -185,7 +185,7 @@ class TestUserLogin:
 
         logger.info("*************** END-TEST ***************")
 
-    @allure.story("用例--获取验证码/用户登陆--预期失败")
+    @allure.story("用例--获取验证码/用户登陆--密码错误")
     @allure.description("该用例是针对 获取验证码/用户登陆 场景的测试")
     @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
