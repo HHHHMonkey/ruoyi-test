@@ -41,12 +41,15 @@ class TestUserLogin:
         :return:
         """
         logger.info("*************** START-TEST ***************")
+        
         verify_code, uuid = step_1()
 
         result = login(username=username, password=password, verify_code=verify_code, uuid=uuid)
+
         logger.info("code ==>> expect: [{}]， actual: [{}]".format(except_code, result.response.json().get("code")))
         assert result.response.json().get("code") == except_code
         assert result.response.json().get("msg") == except_msg
+
         logger.info("*************** END-TEST ***************")
 
 

@@ -47,6 +47,7 @@ class TestImportUserData:
 
         assert result.response.json().get("code") == except_code
         logger.info("code ==>> expect: [{}]， actual: [{}]".format(except_code, result.response.json().get("code")))
+
         logger.info("*************** END-TEST ***************")
 
 

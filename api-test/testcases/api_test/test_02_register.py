@@ -2,13 +2,13 @@ import allure
 import pytest
 
 from common.logger import logger
-from operation.user import register
+from operation.user import register, acquire_login_verify_code
 from testcases.conftest import api_data
 
 
 @allure.step("步骤1 ==>> 注册用户")
-def step_1(username, password, confirmPassword):
-    logger.info("步骤1 ==>> 注册用户 ==>> {}, {}, {}".format(username, password, confirmPassword))
+def step_1(username, password, confirm_password):
+    logger.info("步骤1 ==>> 注册用户 ==>> {}, {}, {}".format(username, password, confirm_password))
 
 
 @allure.severity(allure.severity_level.NORMAL)
@@ -21,27 +21,35 @@ class TestUserRegister:
     @allure.description("该用例是针对获取用户注册接口的测试")
     @allure.issue("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应BUG的链接地址")
     @allure.testcase("https://github.com/WeiXiao-Hyy/ruoyi-test", name="点击，跳转到对应用例的链接地址")
-    @allure.title("测试数据：[{username}, {password}, {confirmPassword}, {except_code}, {except_msg}]")
+    @allure.title("测试数据：[{username}, {password}, {confirm_password}, {except_code}, {except_msg}]")
     @pytest.mark.single
-    @pytest.mark.parametrize("username, password, confirmPassword, except_code, except_msg",
+    @pytest.mark.parametrize("username, password, confirm_password, except_code, except_msg",
                              api_data["test_register_user"])
     @pytest.mark.usefixtures("delete_register_user")
-    def test_register_user(self, username, password, confirmPassword, except_code, except_msg):
+    def test_register_user(self, username, password, confirm_password, except_code, except_msg):
         """
         用户注册
         :param username: 用户名称
         :param password: 密码
-        :param confirmPassword: 确认密码
+        :param confirm_password: 确认密码
         :param except_code: 期望返回code
         :param except_msg: 期望返回msg
         :return:
         """
         logger.info("*************** START-TEST ***************")
-        result = register(username, password, confirmPassword)
-        step_1(username, password, confirmPassword)
+
+        step_1(username, password, confirm_password)
+        verify_code, uuid = acquire_login_verify_code()
+
+        result = register(username=username,
+                          password=password,
+                          confirm_password=confirm_password,
+                          verify_code=verify_code,
+                          uuid=uuid)
+
         assert result.response.json().get("code") == except_code
         assert result.response.json().get("msg") == except_msg
-        logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(except_code, result.response.json().get("code")))
+        logger.info("code ==>> expect: [{}]， actual: [{}]".format(except_code, result.response.json().get("code")))
 
         logger.info("*************** END-TEST ***************")
 
